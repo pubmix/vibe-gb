@@ -1,4 +1,4 @@
-# GBDK 2020 GB Game Codex Skill
+# Vibe GB Codex Skill
 
 This repository contains a Codex skill for creating, building, iterating, and testing real Game Boy `.gb` ROMs with [GBDK-2020](https://github.com/gbdk-2020/gbdk-2020) and [mGBA](https://mgba.io/).
 
@@ -23,13 +23,13 @@ The skill helps Codex scaffold a small GBDK project, compile it with `lcc`, insp
 You need Codex with local skill support. Install this folder into your Codex skills directory:
 
 ```text
-~/.codex/skills/gbdk-2020-gb-game
+~/.codex/skills/vibe-gb
 ```
 
 On Windows:
 
 ```text
-C:\Users\<you>\.codex\skills\gbdk-2020-gb-game
+C:\Users\<you>\.codex\skills\vibe-gb
 ```
 
 ### GBDK-2020
@@ -76,13 +76,13 @@ The included helper scripts are PowerShell scripts and are intended for Windows-
 After installing the skill, start a Codex task and ask:
 
 ```text
-Use $gbdk-2020-gb-game to create a new Game Boy .gb project and run it in mGBA.
+Use $vibe-gb to create a new Game Boy .gb project and run it in mGBA.
 ```
 
 Or:
 
 ```text
-Use $gbdk-2020-gb-game to build a complete .gb game from this idea: ...
+Use $vibe-gb to build a complete .gb game from this idea: ...
 ```
 
 ## Manual Script Usage
