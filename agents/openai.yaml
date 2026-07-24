@@ -1,0 +1,4 @@
+interface:
+  display_name: "GBDK 2020 GB Game"
+  short_description: "Build and test .gb games with GBDK-2020"
+  default_prompt: "Use $gbdk-2020-gb-game to create a new Game Boy .gb project and run it in mGBA."

@@ -1,0 +1,17 @@
+.DS_Store
+Thumbs.db
+*.sav
+*.gb
+*.gbc
+*.ihx
+*.map
+*.noi
+*.sym
+*.lst
+*.rel
+*.asm
+*.o
+build/
+obj/
+outputs/
+work/
