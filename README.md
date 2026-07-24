@@ -1,4 +1,4 @@
-# Vibe GB Codex Skill
+# Vibe GB by ModRetro
 
 This repository contains a Codex skill for creating, building, iterating, and testing real Game Boy `.gb` ROMs with [GBDK-2020](https://github.com/gbdk-2020/gbdk-2020) and [mGBA](https://mgba.io/).
 
