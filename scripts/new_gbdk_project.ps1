@@ -32,35 +32,17 @@ $main = @"
 #include <stdio.h>
 
 static const palette_color_t palettes[] = {
-    RGB8(255, 90, 0), RGB8(255, 184, 52), RGB8(62, 40, 104), RGB8(18, 18, 24)
+    RGB8(255, 255, 255), RGB8(178, 214, 122), RGB8(64, 92, 74), RGB8(12, 18, 22)
 };
 
-static void wait_any(void) {
-    waitpadup();
-    while (!joypad()) wait_vbl_done();
-    waitpadup();
-}
-
 void main(void) {
-    uint8_t x = 8;
-    uint8_t y = 8;
     DISPLAY_ON;
     set_bkg_palette(0, 1, palettes);
     cls();
-    gotoxy(3, 3); printf("$title");
-    gotoxy(2, 6); printf("GBDK 2020 READY");
-    gotoxy(1, 15); printf("PRESS ANY BUTTON");
-    wait_any();
-    cls();
-    gotoxy(1, 1); printf("MOVE THE NETBABY");
+    gotoxy(6, 6); printf("Vibe GB");
+    gotoxy(5, 8); printf("by ModRetro");
+
     while (1) {
-        uint8_t j = joypad();
-        gotoxy(x, y); printf(" ");
-        if ((j & J_LEFT) && x) x--;
-        if ((j & J_RIGHT) && x < 19) x++;
-        if ((j & J_UP) && y > 2) y--;
-        if ((j & J_DOWN) && y < 16) y++;
-        gotoxy(x, y); printf("@");
         wait_vbl_done();
     }
 }
@@ -130,6 +112,15 @@ $readme = @"
 # $Name
 
 GBDK-2020 Game Boy project.
+
+The starter ROM displays:
+
+```text
+Vibe GB
+by ModRetro
+```
+
+Use this as a clean prompt-ready cartridge screen, then replace `src\main.c` as the game takes shape.
 
 Build:
 

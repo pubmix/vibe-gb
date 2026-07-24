@@ -40,6 +40,15 @@ The script creates:
 
 It emits `outputs/<name>.gb` by default.
 
+The default starter ROM is a prompt-ready splash screen:
+
+```text
+Vibe GB
+by ModRetro
+```
+
+Use that as the first running cartridge, then replace or expand `game/src/main.c` with the user's requested game.
+
 ## Build Flags
 
 Use these defaults for a normal `.gb` ROM that is Game Boy Color aware:

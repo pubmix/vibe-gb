@@ -2,11 +2,12 @@
 
 This repository contains a Codex skill for creating, building, iterating, and testing real Game Boy `.gb` ROMs with [GBDK-2020](https://github.com/gbdk-2020/gbdk-2020) and [mGBA](https://mgba.io/).
 
-The skill helps Codex scaffold a small GBDK project, compile it with `lcc`, inspect the generated ROM header, and launch the ROM in mGBA.
+The skill helps Codex scaffold a small GBDK project, compile it with `lcc`, inspect the generated ROM header, and launch the ROM in mGBA. The starter ROM is intentionally simple: it boots to a clean `Vibe GB` / `by ModRetro` screen so the project is ready for the next prompt-driven iteration.
 
 ## What This Skill Does
 
 - Creates a buildable Game Boy project with `game/src/main.c`
+- Starts from a splash screen that says `Vibe GB` and `by ModRetro`
 - Generates `game/build.ps1` and `game/run.ps1`
 - Builds a real `.gb` ROM, usually into `outputs/<name>.gb`
 - Uses GBDK-2020 `lcc`
@@ -68,7 +69,7 @@ $env:MGBA_EXE = "C:\path\to\mGBA.exe"
 
 ### PowerShell
 
-The included helper scripts are PowerShell scripts and are intended for Windows-first GBDK/mGBA workflows.
+The included helper scripts are PowerShell scripts and are intended for Windows-first GBDK/mGBA workflows. The `.ps1` extension means "PowerShell script", not PlayStation 1.
 
 ## How To Use
 
@@ -102,6 +103,13 @@ game\build.ps1
 game\run.ps1
 game\README.md
 outputs\my-game.gb
+```
+
+The generated `main.c` boots to:
+
+```text
+Vibe GB
+by ModRetro
 ```
 
 ### Build
