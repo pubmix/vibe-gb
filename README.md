@@ -171,11 +171,3 @@ references\gbdk2020-notes.md
 scripts\new_gbdk_project.ps1
 scripts\inspect_rom.ps1
 ```
-
-## Origin
-
-This skill was created after setting up a GBDK-2020 workflow, building a `.gb` ROM, inspecting its header, and launching it in mGBA. It captures the repeatable parts of that process so future Codex tasks can create Game Boy ROMs faster and more reliably.
-
-## License
-
-No license has been selected yet. Add one before distributing broadly if you want others to reuse or modify the skill under explicit terms.
