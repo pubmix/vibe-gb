@@ -12,9 +12,11 @@ Use this skill to produce a real Game Boy `.gb` ROM, not just a mockup. Prefer a
 1. Inspect the workspace before editing.
 2. Locate tools:
    - Prefer `GBDK_HOME` when set.
-   - Otherwise look for `gbdk\bin\lcc.exe`, `gbdk-2020\bin\lcc.exe`, or a workspace copy under `work\tools\gbdk\gbdk`.
+   - Otherwise look for `gbdk\bin\lcc.exe`, `gbdk-2020\bin\lcc.exe`, `gbdk/bin/lcc`, or a workspace copy under `work/tools/gbdk/gbdk`.
+   - On macOS, also check common install paths such as `/Applications/GBDK`, `/opt/homebrew/opt/gbdk`, `/usr/local/opt/gbdk`, and `/opt/gbdk`.
    - Prefer `MGBA_EXE` when set.
    - Otherwise look for `C:\Program Files\mGBA\mgba-sdl.exe`, then `C:\Program Files\mGBA\mGBA.exe`.
+   - On macOS, also look for `/Applications/mGBA.app/Contents/MacOS/mGBA`.
 3. If no project exists, run `scripts/new_gbdk_project.ps1` to scaffold one.
 4. Implement the game in GBDK C. Keep the first ROM small and reliable, then iterate.
 5. Build with `game/build.ps1`.
@@ -44,7 +46,7 @@ The default starter ROM is a prompt-ready splash screen:
 
 ```text
 Vibe GB
-by ModRetro
+Ready
 ```
 
 Use that as the first running cartridge, then replace or expand `game/src/main.c` with the user's requested game.

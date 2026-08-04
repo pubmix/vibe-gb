@@ -40,7 +40,7 @@ void main(void) {
     set_bkg_palette(0, 1, palettes);
     cls();
     gotoxy(6, 6); printf("Vibe GB");
-    gotoxy(5, 8); printf("by ModRetro");
+    gotoxy(7, 8); printf("Ready");
 
     while (1) {
         wait_vbl_done();
@@ -58,21 +58,23 @@ function Find-GbdkHome {
     `$dir = Get-Item -LiteralPath `$repoRoot
     while (`$dir) {
         `$candidate = Join-Path `$dir.FullName 'work\tools\gbdk\gbdk'
-        if (Test-Path -LiteralPath (Join-Path `$candidate 'bin\lcc.exe') -PathType Leaf) { return `$candidate }
+        if ((Test-Path -LiteralPath (Join-Path `$candidate 'bin\lcc.exe') -PathType Leaf) -or (Test-Path -LiteralPath (Join-Path `$candidate 'bin/lcc') -PathType Leaf)) { return `$candidate }
         `$candidate = Join-Path `$dir.FullName 'gbdk'
-        if (Test-Path -LiteralPath (Join-Path `$candidate 'bin\lcc.exe') -PathType Leaf) { return `$candidate }
+        if ((Test-Path -LiteralPath (Join-Path `$candidate 'bin\lcc.exe') -PathType Leaf) -or (Test-Path -LiteralPath (Join-Path `$candidate 'bin/lcc') -PathType Leaf)) { return `$candidate }
         `$dir = `$dir.Parent
     }
-    foreach (`$candidate in @('C:\gbdk', 'C:\gbdk-2020', 'C:\tools\gbdk')) {
-        if (Test-Path -LiteralPath (Join-Path `$candidate 'bin\lcc.exe') -PathType Leaf) { return `$candidate }
+    foreach (`$candidate in @('C:\gbdk', 'C:\gbdk-2020', 'C:\tools\gbdk', '/Applications/GBDK', '/opt/homebrew/opt/gbdk', '/usr/local/opt/gbdk', '/opt/gbdk', '/usr/local/gbdk')) {
+        if ((Test-Path -LiteralPath (Join-Path `$candidate 'bin\lcc.exe') -PathType Leaf) -or (Test-Path -LiteralPath (Join-Path `$candidate 'bin/lcc') -PathType Leaf)) { return `$candidate }
     }
     return (Join-Path `$repoRoot 'work\tools\gbdk\gbdk')
 }
 `$gbdkHome = Find-GbdkHome
-`$lcc = Join-Path `$gbdkHome 'bin\lcc.exe'
+`$lccExe = Join-Path `$gbdkHome 'bin\lcc.exe'
+`$lccUnix = Join-Path `$gbdkHome 'bin/lcc'
+`$lcc = if (Test-Path -LiteralPath `$lccExe -PathType Leaf) { `$lccExe } else { `$lccUnix }
 
 if (-not (Test-Path -LiteralPath `$lcc -PathType Leaf)) {
-    throw "Could not find GBDK lcc.exe. Set GBDK_HOME to your GBDK-2020 folder. Tried: `$lcc"
+    throw "Could not find GBDK lcc. Set GBDK_HOME to your GBDK-2020 folder. Tried: `$lcc"
 }
 
 `$outDir = Join-Path `$repoRoot '$($OutputDir.TrimStart('.\'))'
@@ -94,7 +96,8 @@ $run = @"
 `$rom = Join-Path `$repoRoot '$($OutputDir.TrimStart('.\'))\$romName.gb'
 `$defaultMgbaSdl = 'C:\Program Files\mGBA\mgba-sdl.exe'
 `$defaultMgba = 'C:\Program Files\mGBA\mGBA.exe'
-`$mgba = if (`$env:MGBA_EXE) { `$env:MGBA_EXE } elseif (Test-Path -LiteralPath `$defaultMgbaSdl -PathType Leaf) { `$defaultMgbaSdl } else { `$defaultMgba }
+`$defaultMgbaMac = '/Applications/mGBA.app/Contents/MacOS/mGBA'
+`$mgba = if (`$env:MGBA_EXE) { `$env:MGBA_EXE } elseif (Test-Path -LiteralPath `$defaultMgbaSdl -PathType Leaf) { `$defaultMgbaSdl } elseif (Test-Path -LiteralPath `$defaultMgba -PathType Leaf) { `$defaultMgba } else { `$defaultMgbaMac }
 
 if (-not (Test-Path -LiteralPath `$rom -PathType Leaf)) {
     & (Join-Path `$projectRoot 'build.ps1')
@@ -115,30 +118,22 @@ GBDK-2020 Game Boy project.
 
 The starter ROM displays:
 
-```text
-Vibe GB
-by ModRetro
-```
+    Vibe GB
+    Ready
 
 Use this as a clean prompt-ready cartridge screen, then replace `src\main.c` as the game takes shape.
 
 Build:
 
-````powershell
-.\$($ProjectDir.TrimStart('.\'))\build.ps1
-````
+    .\$($ProjectDir.TrimStart('.\'))\build.ps1
 
 Run:
 
-````powershell
-.\$($ProjectDir.TrimStart('.\'))\run.ps1
-````
+    .\$($ProjectDir.TrimStart('.\'))\run.ps1
 
 Output:
 
-````text
-$($OutputDir.TrimStart('.\'))\$romName.gb
-````
+    $($OutputDir.TrimStart('.\'))\$romName.gb
 "@
 
 Set-Content -LiteralPath (Join-Path $srcDir "main.c") -Value $main -Encoding ASCII
