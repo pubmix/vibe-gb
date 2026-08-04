@@ -1,13 +1,13 @@
-# Vibe GB by ModRetro
+# Vibematic by ModRetro
 
 This repository contains a Codex skill for creating, building, iterating, and testing real Game Boy `.gb` ROMs with [GBDK-2020](https://github.com/gbdk-2020/gbdk-2020) and [mGBA](https://mgba.io/).
 
-The skill helps Codex scaffold a small GBDK project, compile it with `lcc`, inspect the generated ROM header, and launch the ROM in mGBA. The starter ROM is intentionally simple: it boots to a clean `Vibe GB` / `Ready` screen so the project is ready for the next prompt-driven iteration.
+The skill helps Codex scaffold a small GBDK project, compile it with `lcc`, inspect the generated ROM header, and launch the ROM in mGBA. The starter ROM is intentionally simple: it boots to a clean `Vibematic` / `Ready` screen so the project is ready for the next prompt-driven iteration.
 
 ## What This Skill Does
 
 - Creates a buildable Game Boy project with `game/src/main.c`
-- Starts from a splash screen that says `Vibe GB` and `Ready`
+- Starts from a splash screen that says `Vibematic` and `Ready`
 - Generates `game/build.ps1` and `game/run.ps1`
 - Builds a real `.gb` ROM, usually into `outputs/<name>.gb`
 - Uses GBDK-2020 `lcc`
@@ -33,13 +33,13 @@ You can run it directly in mGBA, or put it on a compatible flash cart.
 You need Codex with local skill support. Install this folder into your Codex skills directory:
 
 ```text
-~/.codex/skills/vibe-gb
+~/.codex/skills/vibematic
 ```
 
 On Windows:
 
 ```text
-C:\Users\<you>\.codex\skills\vibe-gb
+C:\Users\<you>\.codex\skills\vibematic
 ```
 
 ### GBDK-2020
@@ -98,13 +98,13 @@ The included helper scripts are PowerShell scripts. Use Windows PowerShell or Po
 After installing the skill, start a Codex task and ask:
 
 ```text
-Use $vibe-gb to create a new Game Boy .gb project and run it in mGBA.
+Use $vibematic to create a new Game Boy .gb project and run it in mGBA.
 ```
 
 Or:
 
 ```text
-Use $vibe-gb to build a complete .gb game from this idea: ...
+Use $vibematic to build a complete .gb game from this idea: ...
 ```
 
 ## Manual Script Usage
@@ -130,7 +130,7 @@ outputs\my-game.gb
 The generated `main.c` boots to:
 
 ```text
-Vibe GB
+Vibematic
 Ready
 ```
 

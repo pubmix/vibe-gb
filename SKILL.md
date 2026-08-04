@@ -1,5 +1,5 @@
 ---
-name: vibe-gb
+name: vibematic
 description: Create, build, iterate, and test Game Boy .gb games with GBDK-2020 and mGBA. Use when the user asks to make a .gb/.gbc-style Game Boy ROM, set up a GBDK-2020 build chain, scaffold a new GB game project, convert a game idea into GBDK C code, build with lcc, inspect ROM headers, or launch/test the ROM in mGBA.
 ---
 
@@ -45,7 +45,7 @@ It emits `outputs/<name>.gb` by default.
 The default starter ROM is a prompt-ready splash screen:
 
 ```text
-Vibe GB
+Vibematic
 Ready
 ```
 

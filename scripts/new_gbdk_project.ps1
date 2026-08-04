@@ -39,7 +39,7 @@ void main(void) {
     DISPLAY_ON;
     set_bkg_palette(0, 1, palettes);
     cls();
-    gotoxy(6, 6); printf("Vibe GB");
+    gotoxy(5, 6); printf("Vibematic");
     gotoxy(7, 8); printf("Ready");
 
     while (1) {
@@ -118,7 +118,7 @@ GBDK-2020 Game Boy project.
 
 The starter ROM displays:
 
-    Vibe GB
+    Vibematic
     Ready
 
 Use this as a clean prompt-ready cartridge screen, then replace `src\main.c` as the game takes shape.
