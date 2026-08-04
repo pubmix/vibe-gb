@@ -3,7 +3,7 @@ Thumbs.db
 *.sav
 *.gb
 !outputs/
-!outputs/openai-flash-cart.gb
+!outputs/test.gb
 *.gbc
 *.ihx
 *.map
@@ -17,5 +17,5 @@ build/
 obj/
 outputs/
 !outputs/
-!outputs/openai-flash-cart.gb
+!outputs/test.gb
 work/

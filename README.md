@@ -16,23 +16,23 @@ The skill helps Codex scaffold a small GBDK project, compile it with `lcc`, insp
 - Documents save-RAM / battery-backed cartridge settings
 - Includes a ROM header inspection script
 
-## Included Demo ROM
+## Included Test ROM
 
-This repo includes the current OpenAI flash-cart ROM at:
+This repo includes the current first-test ROM at:
 
 ```text
-outputs/openai-flash-cart.gb
+outputs/test.gb
 ```
 
 You can run it directly in mGBA, or put it on a compatible flash cart.
 
-The rebuildable source for that ROM is included at:
+A rebuildable OpenAI flash-cart example project is included at:
 
 ```text
 examples/openai-flash-cart/
 ```
 
-To rebuild it, set `GBDK_HOME` if needed and run:
+To build that example, set `GBDK_HOME` if needed and run:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\examples\openai-flash-cart\game\build.ps1
@@ -229,7 +229,7 @@ examples\openai-flash-cart\
 references\gbdk2020-notes.md
 scripts\new_gbdk_project.ps1
 scripts\inspect_rom.ps1
-outputs\openai-flash-cart.gb
+outputs\test.gb
 ```
 
 ## License
