@@ -13,14 +13,25 @@ function Convert-ToRomName([string]$value) {
     return $name
 }
 
+function Convert-ToRelativeSubdir([string]$value) {
+    $path = $value -replace '^[.][\\/]', ''
+    $path = $path.TrimStart('\', '/')
+    if (-not $path) { return "." }
+    return ($path -replace '[\\/]', [IO.Path]::DirectorySeparatorChar)
+}
+
 $romName = Convert-ToRomName $Name
 $title = (($romName -replace '-', '').ToUpperInvariant())
 if ($title.Length -gt 11) { $title = $title.Substring(0, 11) }
+$projectSubdir = Convert-ToRelativeSubdir $ProjectDir
+$outputSubdir = Convert-ToRelativeSubdir $OutputDir
+$projectCommandPrefix = "." + [IO.Path]::DirectorySeparatorChar + $projectSubdir + [IO.Path]::DirectorySeparatorChar
+$outputDisplayPath = $outputSubdir + [IO.Path]::DirectorySeparatorChar + "$romName.gb"
 
 $projectRoot = Resolve-Path -LiteralPath "."
-$gameDir = Join-Path $projectRoot $ProjectDir
+$gameDir = Join-Path $projectRoot $projectSubdir
 $srcDir = Join-Path $gameDir "src"
-$outDir = Join-Path $projectRoot $OutputDir
+$outDir = Join-Path $projectRoot $outputSubdir
 
 New-Item -ItemType Directory -Force -Path $srcDir, $outDir | Out-Null
 
@@ -77,7 +88,7 @@ if (-not (Test-Path -LiteralPath `$lcc -PathType Leaf)) {
     throw "Could not find GBDK lcc. Set GBDK_HOME to your GBDK-2020 folder. Tried: `$lcc"
 }
 
-`$outDir = Join-Path `$repoRoot '$($OutputDir.TrimStart('.\'))'
+`$outDir = Join-Path `$repoRoot '$outputSubdir'
 New-Item -ItemType Directory -Force -Path `$outDir | Out-Null
 
 `$rom = Join-Path `$outDir '$romName.gb'
@@ -93,7 +104,8 @@ $run = @"
 
 `$projectRoot = Split-Path -Parent `$MyInvocation.MyCommand.Path
 `$repoRoot = Split-Path -Parent `$projectRoot
-`$rom = Join-Path `$repoRoot '$($OutputDir.TrimStart('.\'))\$romName.gb'
+`$outDir = Join-Path `$repoRoot '$outputSubdir'
+`$rom = Join-Path `$outDir '$romName.gb'
 `$defaultMgbaSdl = 'C:\Program Files\mGBA\mgba-sdl.exe'
 `$defaultMgba = 'C:\Program Files\mGBA\mGBA.exe'
 `$defaultMgbaMac = '/Applications/mGBA.app/Contents/MacOS/mGBA'
@@ -121,19 +133,19 @@ The starter ROM displays:
     Vibematic
     Ready
 
-Use this as a clean prompt-ready cartridge screen, then replace `src\main.c` as the game takes shape.
+Use this as a clean prompt-ready cartridge screen, then replace src/main.c as the game takes shape.
 
 Build:
 
-    .\$($ProjectDir.TrimStart('.\'))\build.ps1
+    $($projectCommandPrefix)build.ps1
 
 Run:
 
-    .\$($ProjectDir.TrimStart('.\'))\run.ps1
+    $($projectCommandPrefix)run.ps1
 
 Output:
 
-    $($OutputDir.TrimStart('.\'))\$romName.gb
+    $outputDisplayPath
 "@
 
 Set-Content -LiteralPath (Join-Path $srcDir "main.c") -Value $main -Encoding ASCII

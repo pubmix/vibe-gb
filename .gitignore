@@ -2,6 +2,8 @@
 Thumbs.db
 *.sav
 *.gb
+!outputs/
+!outputs/openai-flash-cart.gb
 *.gbc
 *.ihx
 *.map
@@ -14,4 +16,6 @@ Thumbs.db
 build/
 obj/
 outputs/
+!outputs/
+!outputs/openai-flash-cart.gb
 work/

@@ -26,6 +26,18 @@ outputs/openai-flash-cart.gb
 
 You can run it directly in mGBA, or put it on a compatible flash cart.
 
+The rebuildable source for that ROM is included at:
+
+```text
+examples/openai-flash-cart/
+```
+
+To rebuild it, set `GBDK_HOME` if needed and run:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\examples\openai-flash-cart\game\build.ps1
+```
+
 ## Required Software
 
 ### Codex
@@ -117,6 +129,12 @@ You can also run the bundled scripts directly.
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\new_gbdk_project.ps1 -Name my-game
 ```
 
+On macOS with PowerShell 7+:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/new_gbdk_project.ps1 -Name my-game
+```
+
 This creates:
 
 ```text
@@ -140,16 +158,34 @@ Ready
 .\game\build.ps1
 ```
 
+On macOS:
+
+```powershell
+pwsh ./game/build.ps1
+```
+
 ### Run In mGBA
 
 ```powershell
 .\game\run.ps1
 ```
 
+On macOS:
+
+```powershell
+pwsh ./game/run.ps1
+```
+
 ### Inspect ROM Header
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\inspect_rom.ps1 -Rom .\outputs\my-game.gb
+```
+
+On macOS:
+
+```powershell
+pwsh ./scripts/inspect_rom.ps1 -Rom ./outputs/my-game.gb
 ```
 
 Example output:
@@ -189,6 +225,7 @@ Important flags:
 ```text
 SKILL.md
 agents\openai.yaml
+examples\openai-flash-cart\
 references\gbdk2020-notes.md
 scripts\new_gbdk_project.ps1
 scripts\inspect_rom.ps1

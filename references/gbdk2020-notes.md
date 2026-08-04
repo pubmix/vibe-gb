@@ -2,19 +2,25 @@
 
 ## Tool Discovery
 
-Common GBDK locations on Windows:
+Common GBDK locations:
 
 - `$env:GBDK_HOME`
 - `.\work\tools\gbdk\gbdk`
 - `C:\gbdk`
 - `C:\gbdk-2020`
 - `C:\tools\gbdk`
+- `/Applications/GBDK`
+- `/opt/homebrew/opt/gbdk`
+- `/usr/local/opt/gbdk`
+- `/opt/gbdk`
+- `/usr/local/gbdk`
 
 Common mGBA locations:
 
 - `$env:MGBA_EXE`
 - `C:\Program Files\mGBA\mgba-sdl.exe`
 - `C:\Program Files\mGBA\mGBA.exe`
+- `/Applications/mGBA.app/Contents/MacOS/mGBA`
 
 Prefer project-local portable tools when a user wants a self-contained setup. Prefer installed tools when the user says they already have GBDK or mGBA.
 
